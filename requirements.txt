@@ -1,0 +1,4 @@
+ultralytics
+supervision
+cython_bbox
+onemetric
