@@ -1,6 +1,6 @@
 from supervision import Point
 
-VIDEO_FILE_NAME = 'vehicle-counting.mp4'
+VIDEO_FILE_NAME = 'vehicle-traffic.mp4'
 
 MODEL = 'yolov8n.pt'
 

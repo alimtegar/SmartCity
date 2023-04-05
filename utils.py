@@ -1,6 +1,4 @@
 import numpy as np
-import torch
-import torchvision
 from typing import Union, List
 from supervision import Detections
 from ByteTrack.yolox.tracker.byte_tracker import STrack
