@@ -1,19 +1,15 @@
 import cv2
 import numpy as np
-from ultralytics import YOLO
 from supervision import Detections, BoxAnnotator, LineZoneAnnotator
 import torch
 import torchvision
 
-from config import VIDEO_FILE_NAME, VEHICLE_DETECTION_MODEL, PLATE_DETECTION_MODEL, WANTED_CLASS_ID_LIST, LINE_COUNTER_START, LINE_COUNTER_END
-from utils import filter_detections, detections2boxes, match_detections_with_tracks
+from config import VIDEO_FILE_NAME, WANTED_CLASS_ID_LIST, LINE_COUNTER_START, LINE_COUNTER_END
+from utils import filter_detections, detections2boxes, match_detections_with_tracks, recognize_text
 
 from tracker import byte_tracker
 from line_counter import CustomLineZone
-
-vehicle_detection_model = YOLO(VEHICLE_DETECTION_MODEL)
-plate_detection_model = YOLO(PLATE_DETECTION_MODEL)
-vehicle_detection_model.fuse()
+from models import vehicle_detection_model, plate_detection_model, text_recognition_model
 
 box_annotator = BoxAnnotator(thickness=4, text_thickness=4, text_scale=2)
 line_annotator = LineZoneAnnotator(thickness=4, text_thickness=4, text_scale=2)
@@ -55,6 +51,10 @@ while cap.isOpened():
         max_plate_detection_xyxy = plate_detections.boxes[torch.argmax(plate_detections.boxes.conf)].xyxy[0]
         x1, y1, x2, y2 = map(int, max_plate_detection_xyxy[:4])
         plate_image = vehicle_image[y1:y2, x1:x2]
+        
+        recognized_text = recognize_text(plate_image, text_recognition_model)
+        print('recognized_text', recognized_text)
+        
         cv2.imshow('Plate Image', plate_image)
         cv2.moveWindow('Plate Image', 0, 300)
     
