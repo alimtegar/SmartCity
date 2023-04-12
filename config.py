@@ -2,7 +2,8 @@ from supervision import Point
 
 VIDEO_FILE_NAME = 'vehicle-traffic.mp4'
 
-MODEL = 'yolov8n.pt'
+VEHICLE_DETECTION_MODEL = 'yolov8n.pt'
+PLATE_DETECTION_MODEL = './models/plate_detection_model.pt'
 
 # Class IDs of Interest
 WANTED_CLASS_ID_LIST = [

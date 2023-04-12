@@ -5,3 +5,4 @@ build/
 yolox.egg-info/
 yolov8n.pt
 vehicle-traffic.mp4
+*.pt
