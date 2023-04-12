@@ -1,5 +1,5 @@
 # Setup
-1. Download the model for plate detection [here](). Move the model into the **./models/** directory.
+1. Download the model for plate detection [here](https://drive.google.com/file/d/1eIoavoCipiZZzqv-WltuD3L92gAyPSY_/view?usp=share_link). Move the model into the **./models/** directory.
 2. Run this command in your terminal:
 ```
 $ python setup.py
